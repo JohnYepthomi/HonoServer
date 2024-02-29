@@ -163,7 +163,7 @@ serve({
 type TStoredToken = { userToken: TUserToken };
 function getStoredRefreshToken(clientId: string): TStoredToken | null {
   try {
-    const filePath = `./refreshTokens/${clientId}.json`;
+    const filePath = `./RefreshTokens/${clientId}.json`;
     const data = readFileSync(filePath, "utf-8");
 
     if (data) {
@@ -185,11 +185,11 @@ function saveRefreshToken(clientId: string, userToken: TUserToken) {
   console.log("saving token to server");
 
   try {
-    if (!existsSync("./refreshTokens")) {
-      mkdirSync("./refreshTokens");
+    if (!existsSync("./RefreshTokens")) {
+      mkdirSync("./RefreshTokens");
     }
 
-    const filePath = `./refreshTokens/${clientId}.json`;
+    const filePath = `./RefreshTokens/${clientId}.json`;
     const data = JSON.stringify({ userToken });
     writeFileSync(filePath, data, "utf-8");
     console.log("token saved sucessfully");
